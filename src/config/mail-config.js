@@ -23,7 +23,7 @@ const mailClient = async (mailOptions) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "brukbesu1@gmail.com",
+        user: process.env.USER_EMAiL,
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         refreshToken: REFRESH_TOKEN,
@@ -31,7 +31,7 @@ const mailClient = async (mailOptions) => {
       },
     });
 
-    const response = transporter.sendMail(mailOptions);
+    const response = await transporter.sendMail(mailOptions);
     return response;
   } catch (error) {
     throw new Error("Email not sent");
